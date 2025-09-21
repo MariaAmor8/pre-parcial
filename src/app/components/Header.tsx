@@ -1,0 +1,18 @@
+import Link from 'next/link';
+import React from 'react';
+
+const Header = () => {
+  return (
+    <header className="bg-gray-800 text-white p-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link href="/" className="text-xl font-bold hover:text-gray-300">Bookstore App</Link>
+        <nav>
+          <Link href="/authors" className="px-3 hover:text-gray-300">Authors</Link>
+          <Link href="/crear" className="px-3 hover:text-gray-300">Crear</Link>
+        </nav>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
