@@ -9,6 +9,7 @@ const Header = () => {
         <nav>
           <Link href="/authors" className="px-3 hover:text-gray-300">Authors</Link>
           <Link href="/crear" className="px-3 hover:text-gray-300">Crear</Link>
+          <Link href="/favoritos" className="px-3 hover:text-gray-300">Favoritos</Link>
         </nav>
       </div>
     </header>
