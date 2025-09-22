@@ -12,7 +12,7 @@ interface CardProps {
 }
 
 
-const EditForm = ({authorId,authorName, authorDescription,authorImageUrl,authorBirthDate}: CardProps) => {
+const EditForm = ({ authorId, authorName, authorDescription, authorImageUrl, authorBirthDate }: CardProps) => {
   const [form, setForm] = useState({
     name: authorName,
     birthDate: authorBirthDate,
@@ -74,6 +74,7 @@ const EditForm = ({authorId,authorName, authorDescription,authorImageUrl,authorB
               value={form.name}
               onChange={handleChange}
               placeholder={`${authorName}`}
+              aria-label="Campo para cambiar del autor"
               className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none ring-0 transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
@@ -94,12 +95,13 @@ const EditForm = ({authorId,authorName, authorDescription,authorImageUrl,authorB
               value={form.birthDate}
               onChange={handleChange}
               placeholder={`${authorBirthDate}`}
+              aria-label="Campo para editar de nacimiento del autor"
               className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
         </div>
 
-       {/* imageUrl */}
+        {/* imageUrl */}
         <div className="sm:col-span-2">
           <label htmlFor="image" className="block text-sm font-medium text-gray-900 dark:text-gray-100">
             Image Url <span className="text-red-500">*</span>
@@ -113,6 +115,7 @@ const EditForm = ({authorId,authorName, authorDescription,authorImageUrl,authorB
               value={form.image}
               onChange={handleChange}
               placeholder={`${authorImageUrl}`}
+              aria-label="Campo para cambiar url de imagen del autor"
               className="w-full resize-y rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
@@ -131,6 +134,7 @@ const EditForm = ({authorId,authorName, authorDescription,authorImageUrl,authorB
               value={form.description}
               onChange={handleChange}
               placeholder={`${authorDescription}`}
+              aria-label="Campo editar descripción del autor"
               className="w-full resize-y rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
@@ -143,7 +147,7 @@ const EditForm = ({authorId,authorName, authorDescription,authorImageUrl,authorB
           type="button"
           className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 ring-1 ring-gray-300 transition hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 dark:text-gray-200 dark:ring-gray-700 dark:hover:bg-gray-800"
           onClick={() =>
-            setForm({ name: "", birthDate: "", image: "", description: ""})
+            setForm({ name: "", birthDate: "", image: "", description: "" })
           }
         >
           Cancel

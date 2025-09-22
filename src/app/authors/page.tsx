@@ -5,8 +5,8 @@ import { useAuthors } from "@/context/AuthorContext";
 
 export default function AuthorsPage() {
 
-    const { authors, deleteAuthor, addFavoriteAuthor,favoriteAuthors,removeFavoriteAuthor } = useAuthors();
-    
+    const { authors, deleteAuthor, addFavoriteAuthor, favoriteAuthors, removeFavoriteAuthor } = useAuthors();
+
     return (
         <div className="container mx-auto p-8">
             <h1 className="text-3xl font-bold">Authors Listing</h1>

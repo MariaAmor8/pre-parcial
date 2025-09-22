@@ -74,7 +74,7 @@ export default function Form() {
               value={form.name}
               onChange={handleChange}
               placeholder="Jane Smith"
-              aria-label="Campo para nombre del autor"
+              aria-label="Campo para insertar nombre del autor"
               onBlur={handleBlur}
               aria-invalid={touched.name && !form.name}
               className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none ring-0 transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
@@ -97,7 +97,7 @@ export default function Form() {
               value={form.birthDate}
               onChange={handleChange}
               placeholder="yyyy-mm-dd"
-              aria-label="Campo para día de nacimiento del autor"
+              aria-label="Campo para insertar día de nacimiento del autor"
               onBlur={handleBlur}
               aria-invalid={touched.name && !form.name}
               className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"

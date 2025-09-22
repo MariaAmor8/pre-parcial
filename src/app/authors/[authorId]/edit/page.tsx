@@ -5,7 +5,7 @@ import { use } from "react";
 
 export default function EditAuthorPage({ params }: { params: Promise<{ authorId: string }> }) {
   const { authors } = useAuthors();
-   const { authorId } = use(params);
+  const { authorId } = use(params);
   const author = authors.find(a => a.id === Number(authorId));
 
   if (!author) {
