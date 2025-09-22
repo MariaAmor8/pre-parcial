@@ -5,6 +5,8 @@ import { Service, fetchAuthorService } from "@/services/authorService";
 type AuthorContextType = {
   authors: Service[];
   addAuthor: (author: Service) => void;
+  updateAuthor: (author: Service) => void;
+  deleteAuthor: (authorId: number) => void; 
 };
 
 const AuthorContext = createContext<AuthorContextType | undefined>(undefined);
@@ -24,8 +26,20 @@ export function AuthorProvider({ children }: { children: ReactNode }) {
     setAuthors((prev) => [...prev, author]);
   };
 
+  const updateAuthor = (updatedAuthor: Service) => {
+    setAuthors((prev) =>
+      prev.map((author) =>
+        author.id === updatedAuthor.id ? updatedAuthor : author
+      )
+    );
+  };
+
+  const deleteAuthor = (authorId: number) => {
+  setAuthors((prev) => prev.filter((author) => author.id !== authorId));
+};
+
   return (
-    <AuthorContext.Provider value={{ authors, addAuthor }}>
+    <AuthorContext.Provider value={{ authors, addAuthor, updateAuthor, deleteAuthor }}>
       {children}
     </AuthorContext.Provider>
   );

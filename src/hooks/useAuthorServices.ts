@@ -1,4 +1,4 @@
-// src/hooks/useStudentServices.ts
+
 "use client"; // Hooks that use useState/useEffect should be for the client.
 
 import { useState, useEffect } from "react";

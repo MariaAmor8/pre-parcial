@@ -1,15 +1,19 @@
-//import Image from 'next/image';
+import { useRouter } from "next/navigation";
+
 
 interface CardProps {
+  id: number;
   name: string;
   description: string;
   birthDate: string;
   imageUrl: string;
+  onDelete?: () => void;
 }
 
 
-const Card = ({name, description,imageUrl,birthDate}: CardProps) => {
-    return (
+const Card = ({id, name, description,imageUrl,birthDate, onDelete}: CardProps) => {
+  const router = useRouter();  
+  return (
     <div className="border rounded-lg shadow-lg overflow-hidden max-w-sm">
       <img
         src={imageUrl}
@@ -23,6 +27,18 @@ const Card = ({name, description,imageUrl,birthDate}: CardProps) => {
         <p className="text-gray-700">{description}</p>
         <p className="text-gray-700">{birthDate}</p>
       </div>
+        <button
+          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
+          onClick={() => router.push(`/authors/${id}/edit`)}
+        >
+          Editar
+        </button>
+        <button
+          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
+          onClick={onDelete}
+        >
+          Eliminar
+        </button>
     </div>
     );
 }

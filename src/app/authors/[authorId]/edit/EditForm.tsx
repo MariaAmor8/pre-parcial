@@ -1,16 +1,27 @@
 "use client";
 import { useState } from "react";
 import { useAuthors } from "@/context/AuthorContext";
+import { useRouter } from "next/navigation";
 
-export default function Form() {
+interface CardProps {
+  authorId: number;
+  authorName: string;
+  authorDescription: string;
+  authorBirthDate: string;
+  authorImageUrl: string;
+}
+
+
+const EditForm = ({authorId,authorName, authorDescription,authorImageUrl,authorBirthDate}: CardProps) => {
   const [form, setForm] = useState({
-    name: "",
-    birthDate: "",
-    image: "",
-    description: "",
+    name: authorName,
+    birthDate: authorBirthDate,
+    image: authorImageUrl,
+    description: authorDescription,
   });
 
-  const { addAuthor } = useAuthors();
+  const { updateAuthor } = useAuthors();
+  const router = useRouter();
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -21,15 +32,16 @@ export default function Form() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    addAuthor({
-      id: Date.now(),
+    updateAuthor({
+      id: authorId, // conservar id original
       name: form.name,
       birthDate: form.birthDate,
       image: form.image,
       description: form.description,
     });
     setForm({ name: "", birthDate: "", image: "", description: "" });
-    alert(`Guardando autor: ${form.name} con id: ${Date.now()}`);
+    alert(`Guardando autor: ${form.name}`);
+    router.push("/authors");
   }
 
   return (
@@ -40,10 +52,10 @@ export default function Form() {
       {/* Header */}
       <div className="mb-6">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-          Formulario para crear un autor
+          Formulario para editar un autor
         </h2>
         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-          Completa los campos para crear un nuevo autor.
+          Completa los campos para editar el autor.
         </p>
       </div>
 
@@ -61,7 +73,7 @@ export default function Form() {
               required
               value={form.name}
               onChange={handleChange}
-              placeholder="Jane Smith"
+              placeholder={`${authorName}`}
               className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none ring-0 transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
@@ -81,7 +93,7 @@ export default function Form() {
               autoComplete="birthDate"
               value={form.birthDate}
               onChange={handleChange}
-              placeholder="yyyy-mm-dd"
+              placeholder={`${authorBirthDate}`}
               className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
@@ -100,7 +112,7 @@ export default function Form() {
               rows={2}
               value={form.image}
               onChange={handleChange}
-              placeholder="Insert image url"
+              placeholder={`${authorImageUrl}`}
               className="w-full resize-y rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
@@ -118,7 +130,7 @@ export default function Form() {
               rows={4}
               value={form.description}
               onChange={handleChange}
-              placeholder="Description of the author"
+              placeholder={`${authorDescription}`}
               className="w-full resize-y rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
@@ -146,3 +158,5 @@ export default function Form() {
     </form>
   );
 }
+
+export default EditForm;
