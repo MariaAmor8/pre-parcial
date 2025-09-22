@@ -11,6 +11,18 @@ export default function Form() {
   });
 
   const { addAuthor } = useAuthors();
+  const [touched, setTouched] = useState({
+    name: false,
+    birthDate: false,
+    image: false,
+    description: false,
+  });
+
+  function handleBlur(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const { name } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+  }
+
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -62,6 +74,9 @@ export default function Form() {
               value={form.name}
               onChange={handleChange}
               placeholder="Jane Smith"
+              aria-label="Campo para nombre del autor"
+              onBlur={handleBlur}
+              aria-invalid={touched.name && !form.name}
               className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none ring-0 transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
@@ -82,6 +97,9 @@ export default function Form() {
               value={form.birthDate}
               onChange={handleChange}
               placeholder="yyyy-mm-dd"
+              aria-label="Campo para día de nacimiento del autor"
+              onBlur={handleBlur}
+              aria-invalid={touched.name && !form.name}
               className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
@@ -101,6 +119,9 @@ export default function Form() {
               value={form.image}
               onChange={handleChange}
               placeholder="Insert image url"
+              aria-label="Campo para insertar url de imagen del autor"
+              onBlur={handleBlur}
+              aria-invalid={touched.name && !form.name}
               className="w-full resize-y rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
@@ -119,6 +140,9 @@ export default function Form() {
               value={form.description}
               onChange={handleChange}
               placeholder="Description of the author"
+              aria-label="Campo para descripción del autor"
+              onBlur={handleBlur}
+              aria-invalid={touched.name && !form.name}
               className="w-full resize-y rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
@@ -129,6 +153,7 @@ export default function Form() {
       <div className="mt-8 flex items-center justify-end gap-3">
         <button
           type="button"
+          aria-label="Botón para cancelar la operación"
           className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 ring-1 ring-gray-300 transition hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 dark:text-gray-200 dark:ring-gray-700 dark:hover:bg-gray-800"
           onClick={() =>
             setForm({ name: "", birthDate: "", image: "", description: ""})
@@ -138,6 +163,7 @@ export default function Form() {
         </button>
         <button
           type="submit"
+          aria-label="Botón para confirmar la operación"
           className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
         >
           Save
